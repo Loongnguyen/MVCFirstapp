@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Movie App</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVCFirstapp.styles.css" asp-append-version="true" />
+    <style>
+
+    .nav-link {
+        background-color: lightskyblue;
+        border: solid 1px lightskyblue;
+        border-radius: 25px;
+        font-size: 17px;
+        padding: 12px;
+        font-weight: 600;
+     }
+
+    .nav-item{
+        margin-right: 14px;
+    }
+    .navbar-brand{
+        background-color: lightskyblue;
+        border: solid 1px lightskyblue;
+        border-radius: 25px;
+        font-size: 17px;
+        padding: 12px;
+        font-weight:600;
+        margin-left: 14px;
+    }
+    .navbar-brand:hover{
+        background-color: lightsteelblue;
+        border: solid 1px lightsteelblue;
+        transition: 0.8s all;
+    }
+
+    .nav-link:hover{
+        background-color: lightsteelblue;
+        border: solid 1px lightsteelblue;
+            transition: 0.8s all;
+    }
+
+    .footer-text {
+        text-decoration: none;
+        color: steelblue;
+        font-weight: 500;
+    }
+
+        .login-btn{
+            background-color: lightskyblue;
+            border: solid 1px lightskyblue;
+            border-radius: 25px;
+            font-size: 17px;
+            padding: 12px 20px  ;
+           
+
+        }
+        .login-btn:hover{
+                background-color: lightsteelblue;
+                border: solid 1px lightsteelblue;
+                transition: 0.8s all;
+        }
+        .dialog-close-btn {
+            position: absolute;
+            top: 2px;
+            right: 6px;
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }
+
+        .dialog-body {
+            max-width: 400px;
+            position: relative;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .dialog {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+           
+           
+        }
+
+            .dialog:target {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5)
+        }
+
+        body {
+            background-color: lightcyan;
+        }
+
+        .overlay-close {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        
+    
+</style>
+</head>
+<body>
+   
+    <header class="custom-hd">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <div class="login-btn">
+                    <a style="color: black;" href="#my-dialog">Log In</a>
+                </div>
+                <div class="dialog overlay" id="my-dialog">
+                    <a class="overlay-close" href="#"></a>
+                    <div class="dialog-body">
+                        <a class="dialog-close-btn" href="#">&times;</a>
+                        <div class="container mt-3">
+                            <h2>Log In</h2>
+                            <form action="/action_page.php">
+                                <div class="mb-3 mt-3">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter Usename" name="Usename">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                                </div>
+                                <label for="sel2" class="form-label">Clause:</label>
+                                <select multiple class="form-select" id="sel2" name="sellist2">
+                                    <option>1.Faithfull.</option>
+                                    <option>2.Take responsibility for all risks.</option>
+                                    <option>3.Double-check the information.</option>
+                                    <option>4.Use of information.</option>
+                                    <option>5.Don't share an account.</option>
+                                </select>
+                                <div class="form-check mb-3">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="remember"> I agree on clause.
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Log In</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <a class="navbar-brand" asp-area="" asp-controller="Movies" asp-action="Index">Movie App</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <a style="text-decoration: none;" href="#">&copy; 2023 - MVCFirstapp -</a><a class="footer-text" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

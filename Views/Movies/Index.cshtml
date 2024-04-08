@@ -1,0 +1,118 @@
+﻿@model MVCFirstapp.Models.MovieGenreViewModel
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Movie App</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVCFirstapp.styles.css" asp-append-version="true" />
+    <style>
+       
+        .cnt-txt{
+            color: #fff;
+        }
+
+        .cnt-txt:hover {
+            color:red;
+        }
+        .btn-ed{
+            background-color: grey;
+            border: solid 1px grey;
+            border-radius: 20px;
+        }
+        .btn-ed:hover{
+                background-color: darkgrey;
+                border: solid 1px darkgrey;
+                border-radius: 20px;
+            }
+        body {
+            background-color: lightcyan;
+        }
+        a{
+            text-decoration: none;
+        }
+        .new-movie{
+            font-size:20px;
+            font-weight:400;
+        }
+        th {
+            border: solid 1px black;
+        }
+
+        td {
+            border: solid 1px black;
+        }
+
+        tr {
+            border: solid 1px black;
+        }
+
+        #listmovie {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        table {
+            width: 100%;
+        }
+        h1{
+            color: #ffff;
+            font-size: 100px;
+            font-weight: 400;
+            text-shadow: 0 0 7px cyan, 0 0 10px #0000FF;
+        }
+    </style>
+</head>
+    <body>
+        
+    <div id="listmovie">
+        <div class="content-top">
+            <h1>InDex</h1>
+            <a class="new-movie" href="https://www.cgv.vn/default/kung-fu-panda-4.html">Movie New</a>
+            <p>Hello Welcome To List Flim.</p>
+        </div>
+     <div>
+            <form asp-controller="Movies" asp-action="Index" method="get">
+                <p>
+
+                    <select asp-for="MovieGenre" asp-items="Model.Genres">
+                        <option value="">All</option>
+                    </select>
+
+                    Title: <input type="text" asp-for="SearchString" />
+                    <input type="submit" value="Filter" />
+                </p>
+            </form>
+        </div>  
+   
+    <table>
+        <tr>
+                <th>@Html.DisplayNameFor(model => model.Movies![0].Title)</th>
+                <th>@Html.DisplayNameFor(model => model.Movies![0].ReleaseDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Movies![0].Genre)</th>
+                <th>@Html.DisplayNameFor(model => model.Movies![0].Price)</th>
+        </tr>
+        @foreach (var movie in Model.Movies!)
+
+        {
+
+            <tr>
+
+                    <td> @Html.DisplayFor(modelItem => movie.Title)</td>
+                    <td> @Html.DisplayFor(modelItem => movie.ReleaseDate)</td>
+                    <td> @Html.DisplayFor(modelItem => movie.Genre)</td>
+                    <td> @Html.DisplayFor(modelItem => movie.Price)</td>
+                <td>
+
+                        <button class="btn-ed"><a class="cnt-txt" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></button>
+                        <button class="btn-ed"><a class="cnt-txt" asp-action="Details" asp-route-id="@movie.Id">Details</a></button>
+                        <button class="btn-ed"><a class="cnt-txt" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></button>
+                </td>
+                    
+            </tr>
+        }
+    </table>
+    </div>
+</body>
+</html>
